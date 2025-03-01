@@ -1,41 +1,44 @@
+using DensityPeaksClustering;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
-
+// Register CORS services before building the app
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        policy => policy.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+});
+builder.Services.AddHttpClient();
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
+// Apply CORS middleware
+app.UseCors("AllowAll");
 
-app.UseHttpsRedirection();
-
-var summaries = new[]
+app.MapGet("/", () =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+    return "Hello Clustering Service!";
 
-app.MapGet("/weatherforecast", () =>
+});
+
+app.MapPost("/KNN", (KNNAlgorithmParams p) =>
 {
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
+    var result = DensityPeaksClusteringAlgorithms.KNN(p);
+    return Results.Json(result);
+});
+
+app.MapPost("/DensityPeaks", (DensityPeaksAlgorithmParams p) =>
+{
+    var result = DensityPeaksClusteringAlgorithms.DPClustering(p);
+    return Results.Json(result);
+});
+
+app.MapPost("/MultiManifold", (MultiManifoldAlgorithmParams p) =>
+{
+    var result = DensityPeaksClusteringAlgorithms.MultiManifold(p);
+    return Results.Json(result);
+});
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
