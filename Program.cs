@@ -16,7 +16,7 @@ builder.Services.AddHttpClient();
 // Configure Kestrel to listen on a non-privileged port (e.g., port 80 or 5106)
 builder.WebHost.ConfigureKestrel(options =>
 {
-    options.ListenAnyIP(80);  // Listen on HTTP port 80 (or another port like 5106)
+    options.ListenAnyIP(5106);  // Listen on HTTP port 80 (or another port like 5106)
 });
 
 var app = builder.Build();
