@@ -5,8 +5,6 @@ VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClustREST", "ClustREST.csproj", "{006F01AE-7DC2-4BF8-90DE-38D6D30BEA5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DensityPeaksClustering", "..\DensityPeaksClustering\DensityPeaksClustering\DensityPeaksClustering.csproj", "{5C9D897E-A45E-4771-8DEB-F4E6B573125C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{006F01AE-7DC2-4BF8-90DE-38D6D30BEA5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{006F01AE-7DC2-4BF8-90DE-38D6D30BEA5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{006F01AE-7DC2-4BF8-90DE-38D6D30BEA5A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5C9D897E-A45E-4771-8DEB-F4E6B573125C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5C9D897E-A45E-4771-8DEB-F4E6B573125C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5C9D897E-A45E-4771-8DEB-F4E6B573125C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5C9D897E-A45E-4771-8DEB-F4E6B573125C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
